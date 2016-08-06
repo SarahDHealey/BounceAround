@@ -9,44 +9,34 @@
     <link rel="stylesheet" href="/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
     <title></title>
     <link rel='stylesheet' href='/stylesheets/accordionTrip.css' />
-        <link rel='stylesheet' href='/stylesheets/scrollCal.css' />
   </head>
   <body>
+
     <% include ../layout.ejs %>
-  <div class="container-fluid darkGray">
+    <div class="container-fluid">
 
     <div class="row">
       <div class="col-md-3">
         <div class="filters">
-          <div class="form-group">
           <h5>find:</h5>
           <div id="searchfield">
-            <input class="form-control" type="text" name="" class="biginput" id="autocomplete" placeholder="Enter type of place">
-          </div>
+            <input type="text" name="" class="biginput" id="autocomplete" placeholder="Enter type of place">
           </div>
           <div class="search_icons">
-              <div class="search_icon">
-                <img src="/images/restaurantsIcon.png" alt="restaurant" />
-              </div>
-              <div class="search_icon"><img src="/images/hotelIcon.png" alt="lodging" />
-              </div>
-              <div class="search_icon"><img src="/images/barIcon.png" alt="bar" />
-              </div>
-              <div class="search_icon"><img src="/images/parksIcon.png" alt="park" />
-              </div>
+              <div class="search_icon"><img src="https://i.imgur.com/liUB50H.png" alt="restaurant" /></div>
+              <div class="search_icon"><img src="https://i.imgur.com/BFiuOkx.png" alt="lodging" /></div>
+              <div class="search_icon"><img src="https://i.imgur.com/kaicBix.png" alt="bar" /></div>
+              <div class="search_icon"><img src="https://i.imgur.com/OIT3QVJ.png" alt="park" /></div>
           </div>
-
           <h5>near:</h5>
           <div id="locationField">
-            <div class="form-group">
-            <input class="form-control" id="autocompletemap" placeholder="Enter a city/place/address" type="text" />
-            </div>
+            <input id="autocompletemap" placeholder="Enter a city/place/address" type="text" />
           </div>
         </div>
 
         <div class="addtocalendar">
           <div class="close_form">x</div>
-          <div class="filtersHeader">Add activity to trip planner</div>
+          Add activity to trip planner
           <form class="" action="/activities/<%= trip_id %>/new" method="post">
             <div class="form-group">
             Title / Place
@@ -79,7 +69,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 mapFrame">
+      <div class="col-md-6">
         <div class="map_box">
           <div id="map"></div>
         </div>
@@ -129,31 +119,42 @@
           </table>
         </div>
       </div>
-      <div class="needBackground">
-      <div class="col-md-3 scheduleBorder">
-      <p>schedule:</p>
-      </div>
-        <div class="col-md-3 calDay">
 
+      <div class="col-md-3 calDay">
         <div class="schedule">
           <div class="activities">
             <div>
               <% days.forEach(function(day) { %>
                 <button class="accordion">
-                <%= day.shortDay %>
+                <a class=""><%= day.shortDay %></a>
                 </button>
                 <div class="panel">
-                  <div><% activities.forEach(function(activity) {
+                  <div>
+                    <% activities.forEach(function(activity) {
                     if (activity.day_id === day.id) { %>
-                      <a class="accordion">
-                        <div>
-                        <%= activity.name %>
-                        </div>
-                      </a>
+
+                      <div class="accordion">
+                        <div class="act_edit">
+                        <div class="act_name"><%= activity.name %></div>
+                        <div id="<%= activity.id %>" class="act_delete"> x </div>
+                      </div>
+                      </div>
                       <div class="panel">
-                        <%= activity.address %>
-                        <%= activity.start_time %>
-                        <%= activity.end_time %>
+                        <div class="act_dates">
+                          <%    function getFormattedTime(time) {
+                                  time = time.substring(0,5)
+                                  time.replace(":", '')
+                                  var hours24 = parseInt(time.substring(0, 2),10);
+                                  var hours = ((hours24 + 11) % 12) + 1;
+                                  var amPm = hours24 > 11 ? 'pm' : 'am';
+                                  var minutes = time.substring(2);
+                                  return hours + minutes + amPm;
+                              } %>
+                          <% var astart = getFormattedTime(activity.start_time) %>
+                          <% var aend = getFormattedTime(activity.end_time) %>
+                          <p class="act_date">From <%= astart %> to <%= aend %><p>
+                        </div>
+                        <p>Address: <%= activity.address %></p>
                       </div>
                     <% } %>
                   <% }) %>
@@ -163,16 +164,11 @@
             </div>
           </div>
         </div>
-        </div>
-        <div class="col-md-3 deleteButton">
-          <form action="/trips/<%= trip_id %>/delete" method="post">
-            <input class="deleteInp" type="submit" name="delete-trip" value="Delete this trip">
-          </form>
-        </div>
-        </div>
       </div>
     </div>
-
+    <form action="/trips/<%= trip_id %>/delete" method="post">
+      <input type="submit" name="delete-trip" value="Delete this trip">
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.26/jquery.autocomplete.min.js"></script>
