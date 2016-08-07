@@ -4,9 +4,12 @@ h1, h2, h3, h4, h5, h6{
 #custom-bootstrap-menu, footer, body{
   font-family: 'Mukta Vaani', sans-serif;
 }
+#menu.navbar.navbar-default{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
 #custom-bootstrap-menu{
   height: 7vh;
-  margin-bottom: 1px;
 }
 #custom-bootstrap-menu.navbar-default .navbar-brand {
     color: rgba(119, 119, 119, 1);
@@ -16,6 +19,8 @@ h1, h2, h3, h4, h5, h6{
     background-color: rgba(248, 248, 248, 1);
     border-width: 1px;
     border-radius: 4px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
 }
 #custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
     color: rgba(119, 119, 119, 1);
@@ -143,14 +148,14 @@ div.panel.show {
 
 #ourBanner{
   width: 100vw;
-  height: 93vh;
+  height: 110vh;
   font-family: 'Fjalla One', sans-serif;
   color: #FFDA00;
   margin-top: -1.3%;
 }
 #makeTransparent{
   width: 100vw;
-  height: 93vh;
+  height: 110vh;
   background-color: rgba(0, 0, 0, .75);
   position: absolute;
   z-index: 0;
@@ -158,7 +163,7 @@ div.panel.show {
 }
 #bottomButt{
   width: 100vw;
-  height: 93vh;
+  height: 110vh;
   position: absolute;
   z-index: 10;
   text-align: center;
@@ -174,7 +179,7 @@ div.panel.show {
 #bannerText{
   display: table;
   width: 100vw;
-  height: 93vh;
+  height: 110vh;
   line-height: normal;
 }
 #bannerText h1{
@@ -295,6 +300,7 @@ table {
 .iw_attribute_name {
   font-weight: bold;
   text-align: right;
+  padding-right: 4px;
 }
 .iw_table_icon {
   text-align: right;
@@ -341,7 +347,7 @@ h5{
 
 .map_box{
   width: 100%;
-  height: 84.1vh;
+  height: 82vh;
   display:inline-block;
 }
 
@@ -469,7 +475,7 @@ opacity: 1;
 max-height: 500px;
 }
 
-div.act_dates{
+.act_dates{
   display: block;
 }
 
@@ -478,5 +484,28 @@ div.act_dates{
   width: 100%;
   margin-bottom: 0;
   padding-bottom: 0;
-  color: black;
+}
+
+#boday{
+  background-color: #3C454E;
+}
+
+.nameofactivity{
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+#centerAddress{
+  font-weight: bold;
+}
+
+.addtocalCenter{
+  float: right;
+}
+
+.titlest{
+  font-weight: bold;
+  width: 30%;
+  margin: 0;
 }
