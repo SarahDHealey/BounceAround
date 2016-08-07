@@ -165,9 +165,9 @@
                               } %>
                           <% var astart = getFormattedTime(activity.start_time) %>
                           <% var aend = getFormattedTime(activity.end_time) %>
-                          <p class="act_date">From <%= astart %> to <%= aend %><p>
+                          <h6>From <%= astart %> to <%= aend %><h6>
+                          <h6 class="act_date">Address: <%= activity.address %></h6>
                         </div>
-                        <p>Address: <%= activity.address %></p>
                       </div>
                     <% } %>
                   <% }) %>
